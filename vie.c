@@ -4,6 +4,7 @@
 #define COLONNES 20
 #define LIGNES 20
 
+// STRUCTURE -------------------------
 typedef enum Direction{
 	N, E, O, S
 	}Direction;
@@ -32,7 +33,8 @@ typedef struct Fourmi{
 	Coordonnees coordonnees;
 	Direction direction;
 	}Fourmi;
-	
+
+// PROTOTYPES FONCTIONS -------------------------
 
 void place_fourmi(Spot tab[LIGNES][COLONNES],int a, int b);
 void case_couleur(Spot tab[LIGNES][COLONNES]);
@@ -40,6 +42,7 @@ void reperage_fourmi(Spot tab[LIGNES][COLONNES]);
 void affiche_tableau(Spot tab[LIGNES][COLONNES]);
 void deplacement(Spot tab[LIGNES][COLONNES]);
 
+// FONCTION MAIN -------------------------
 
 int main () {
 
@@ -84,7 +87,7 @@ return 0;
 
 }
 
-
+// IMPLEMENTATION FONCTIONS ----------------------------------
 
 void place_fourmi(Spot tab[LIGNES][COLONNES], int a, int b) {
 int i, j;
@@ -99,8 +102,8 @@ for (i=0; i<LIGNES; i++) {
 	
 tab[a][b].occupation=fourmi;
 
-f.coordonnees.x=b;
-f.coordonnees.y=a;
+f.coordonnees.y=b;
+f.coordonnees.x=a;
 }
 
 void case_couleur(Spot tab[LIGNES][COLONNES]) {
@@ -145,10 +148,11 @@ for (i=0; i<LIGNES; i++) {
 	for (j=0; j<COLONNES; j++) {
 		if (tab[i][j].occupation==fourmi && tab[i][j].couleur==blanc && f.direction==N) {
 			f.coordonnees.y++;
+			f.direction=E;
 			}
 		else if (tab[i][j].occupation==fourmi && tab[i][j].couleur==blanc && f.direction==E) {
 			f.coordonnees.x++;
-	
+			f.direction=S;
 			}
 		
 		}
